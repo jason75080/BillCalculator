@@ -1,0 +1,36 @@
+<html ng-app="BillCalculator">
+	<head>
+		<title>Bill Calculator</title>
+	</head>
+	<body>
+		<h1>Bill Calculator App</h1>
+		
+		<div ng-controller="BillCalculatorController as bc">
+		    Enter total price of food and drink: 
+			<input type="text" ng-model="bc.userPrice" id="user_price" name="VALUE" placeholder="Enter amount"> <br /> <br />
+			Choose state for sales tax: 
+            <select ng-model="bc.selected_state" 
+                    ng-options="state.state_name for state in bc.states" 
+                    ng-change="change()"></select> <br /> <br />
+            Tax Amount: {{ bc.taxAmount | currency }} <br > <br />
+            Total including tax: {{ bc.taxTotal | currency }} <br /> <br />
+            Select Tip Percentage:
+            <form>
+                <label>
+                    <input type="radio" ng-model="bc.selected.tip" value="10" ng-change="change()">10% = {{ bc.tenPercentTaxAmount | currency }}
+                </label><br/>
+                <label>
+                    <input type="radio" ng-model="bc.selected.tip" value="15" ng-change="change()">15 % = {{ bc.fifteenPercentTaxAmount | currency }}
+                </label><br/>
+                <label>
+                    <input type="radio" ng-model="bc.selected.tip" value="20" ng-change="change()">20 % = {{ bc.twentyPercentTaxAmount | currency }}
+                </label><br/>
+            </form>
+            Total: {{ bc.totalAmount | currency }}
+			
+			
+		</div>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+        <script src="app.js"></script>	
+	</body>
+</html>
